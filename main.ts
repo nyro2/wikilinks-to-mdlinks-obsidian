@@ -76,8 +76,7 @@ export default class WikilinksToMdlinks extends Plugin {
 					} else {
 						newText = newText + ".md"
 					}
-					const encodedText = encodeURI(newText)
-					let newItem = `[${text}](${encodedText})`
+					let newItem = `[${text}](${newText})`
 
 					const cursorStart = {
 						line: cursor.line,
