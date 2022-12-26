@@ -76,7 +76,9 @@ export default class WikilinksToMdlinks extends Plugin {
 					} else {
 						newText = newText + ".md"
 					}
-					let newItem = `[${text}](${newText})`
+					const allSpaces = new RegExp(' ', 'g')
+					const encodedText = newText.replace(allSpaces, "%20")
+					let newItem = `[${text}](${encodedText})`
 
 					const cursorStart = {
 						line: cursor.line,
