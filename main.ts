@@ -68,7 +68,7 @@ export default class WikilinksToMdlinks extends Plugin {
 				if ((cursor.ch >= index ) && (cursor.ch <= indexEnd )) {
 					ifFoundMatch = true
 					let text = item.match(regexWiki)[1]
-					let alias = ""
+					let alias = text
 					if (text.contains('|')) {
 						const index = text.indexOf('|')
 						alias = text.slice(index + 1)
