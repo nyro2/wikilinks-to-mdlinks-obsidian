@@ -1,6 +1,6 @@
 # About modifying
-This plugin is the modified version of 'agathauy/wikilinks-to-mdlinks-obsidian'.
-(Remove URI-encode function for processing Japanese characters)
+This plugin is the modified version of 'agathauy/wikilinks-to-mdlinks-obsidian'.  
+(Remove URI-encode function for processing Japanese characters / Support wikilink aliases)
 
 The text below is from the original repository.
 
