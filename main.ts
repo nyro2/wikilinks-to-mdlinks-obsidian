@@ -47,6 +47,7 @@ export default class WikilinksToMdlinks extends Plugin {
 		const regexParenthesis = /\((.*?)\)/
 		const regexWikiGlobal = /\[\[([^\]]*)\]\]/g
 		const regexMdGlobal = /\[([^\]]*)\]\(([^\(]*)\)/g
+		const regexBrackets = /\[(.*?)\]/
 
 		let wikiMatches = line.match(regexWikiGlobal)
 		let mdMatches = line.match(regexMdGlobal)
@@ -67,6 +68,12 @@ export default class WikilinksToMdlinks extends Plugin {
 				if ((cursor.ch >= index ) && (cursor.ch <= indexEnd )) {
 					ifFoundMatch = true
 					let text = item.match(regexWiki)[1]
+					let alias = ""
+					if (text.contains('|')) {
+						const index = text.indexOf('|')
+						alias = text.slice(index + 1)
+						text = text.slice(0, index)
+					}
 					// Check if it is a markdown file
 					const matches = text.match(regexHasExtension);
 					let newText = text
@@ -78,7 +85,7 @@ export default class WikilinksToMdlinks extends Plugin {
 					}
 					const allSpaces = new RegExp(' ', 'g')
 					const encodedText = newText.replace(allSpaces, "%20")
-					let newItem = `[${text}](${encodedText})`
+					let newItem = `[${alias}](${encodedText})`
 
 					const cursorStart = {
 						line: cursor.line,
@@ -106,6 +113,7 @@ export default class WikilinksToMdlinks extends Plugin {
 					if ((cursor.ch >= index ) && (cursor.ch <= indexEnd )) {
 						ifFoundMatch = true
 						let text = item.match(regexParenthesis)[1]
+						let textInBrackets = item.match(regexBrackets)[1]
 						text = decodeURI(text)
 
 						// Check if it is a markdown file
@@ -117,6 +125,9 @@ export default class WikilinksToMdlinks extends Plugin {
 							if (extension == 'md') {
 								text = filename
 							}
+						}
+						if (text !== textInBrackets) {
+							text = text + '|' + textInBrackets
 						}
 						let newItem = `[[${text}]]`
 
