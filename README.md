@@ -1,3 +1,9 @@
+# About modifying
+This plugin is the modified version of 'agathauy/wikilinks-to-mdlinks-obsidian'.
+(Remove URI-encode function for processing Japanese characters)
+
+The text below is from the original repository.
+
 # Wikilinks to MDLinks (an Obsidian.md plugin)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/agathauy/wikilinks-to-mdlinks-obsidian)](https://github.com/agathauy/wikilinks-to-mdlinks-obsidian/releases/latest)
 [![GitHub All Releases](https://img.shields.io/github/downloads/agathauy/wikilinks-to-mdlinks-obsidian/total)](https://github.com/agathauy/wikilinks-to-mdlinks-obsidian/releases)
