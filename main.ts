@@ -1,4 +1,3 @@
-import { strict } from 'assert'
 import { App, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian'
 import { MarkdownView, TFile } from 'obsidian'
 
@@ -10,7 +9,7 @@ export default class WikilinksToMdlinks extends Plugin {
 			id: "toggle-wiki-md-links",
 			name: "Toggle selected wikilink to markdown link and vice versa",
 			checkCallback: (checking: boolean) => {
-				const currentView = this.app.workspace.getActiveLeafOfViewType(MarkdownView)
+				const currentView = this.app.workspace.getActiveViewOfType(MarkdownView)
 
 				if ((currentView == null) || (currentView.getMode() !== 'source'))  {
 					return false
@@ -35,8 +34,8 @@ export default class WikilinksToMdlinks extends Plugin {
 	}
 
 	toggleLink() {
-		const currentView = this.app.workspace.getActiveLeafOfViewType(MarkdownView)
-		const editor = currentView.sourceMode.cmEditor
+		const currentView = this.app.workspace.getActiveViewOfType(MarkdownView)
+		const editor = currentView.editor
 
 
 		const cursor = editor.getCursor()
